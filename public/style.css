@@ -446,6 +446,27 @@ dialog::backdrop {
 	margin-right: auto;
 }
 
+.emoto2-button {
+	display: inline-block;
+	background-color: #6441a5;
+	color: white;
+	font-family: 'Intro Rust', sans-serif;
+	font-size: 1.2rem;
+	font-weight: bold;
+	padding: 8px 20px;
+	border-radius: 8px;
+	margin: 10px 0;
+	text-shadow: 0 0 5px black;
+	transition: all 0.2s ease;
+}
+
+.emoto2-button:hover {
+	background-color: #9146FF;
+	transform: scale(1.05);
+	box-shadow: 0 0 10px rgba(145, 70, 255, 0.6);
+	cursor: pointer;
+}
+
 #channelInput {
 	font-weight: 700;
 	box-shadow: 0 0 0 2px #000000;
