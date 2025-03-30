@@ -1,0 +1,136 @@
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.2" />
+	<meta name="description" content="Emoto - Jogo de adivinhação de emotes da Twitch. Teste seu conhecimento de emotes de seus streamers favoritos!" />
+	<meta name="keywords" content="Twitch, emotes, game, emote guessing, BTTV, 7TV, Twitch emotes, streaming" />
+	<meta name="author" content="Júlia Klee" />
+	<meta name="robots" content="index, follow" />
+	
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://emoto.juliaklee.wtf/" />
+	<meta property="og:title" content="Emoto - Twitch Emote Guessing Game" />
+	<meta property="og:description" content="Teste seu conhecimento de emotes da Twitch neste divertido jogo de adivinhação!" />
+	<meta property="og:image" content="./img/Emoto-Background.png" />
+	
+	<meta property="twitter:card" content="summary_large_image" />
+	<meta property="twitter:url" content="https://emoto.juliaklee.wtf/" />
+	<meta property="twitter:title" content="Emoto - Twitch Emote Guessing Game" />
+	<meta property="twitter:description" content="Teste seu conhecimento de emotes da Twitch neste divertido jogo de adivinhação!" />
+	<meta property="twitter:image" content="./img/Emoto-Background.png" />
+	
+	<meta name="theme-color" content="#6441a5" />
+	
+	<link rel="stylesheet" href="style.css" />
+	<link rel="icon" type="image/webp" href="img/pogg.webp" />
+	<link rel="apple-touch-icon" href="img/pogg.webp" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<title>Emoto - Twitch Emote Guessing Game</title>
+
+	<script defer data-domain="emoto.juliaklee.wtf" src="https://plausible.io/js/script.revenue.js"></script>
+
+</head>
+<a tabindex="-1" id="Help" class="fa fa-question-circle"></a>
+
+<dialog>
+	<div id="modalHelp">
+		<h1 id="modalTitle">Como jogar</h1>
+		<img class="gaming" id="gaming" src="./img/hate.webp" />
+		<p id="modalText">
+			Emoto é um jogo de adivinhação de emotes da Twitch.
+			<br/><br/>
+			<strong>COMO JOGAR:</strong>
+			<br/>
+			1. Insira o nome do canal → o jogo carrega TODOS os emotes (BTTV + 7TV).
+			<br/>
+			2. Um emote aparece → <strong>adivinhe o nome dele</strong>.
+			<br/><br/>
+			<strong>REGRAS:</strong>
+			<br/>
+			✅ Acertou = <strong>+1 ponto</strong> (emote é removido).
+			<br/>
+			❌ Errou = <strong>-1 vida</strong> (tente de novo).
+			<br/>
+			🔥 3 acertos seguidos = <strong>+1 vida extra</strong>.
+			<br/>
+			💀 4 erros = <strong>FIM DO JOGO</strong>.
+			<br/><br/>
+			<strong>CONTROLES RÁPIDOS:</strong>
+			<br/>
+			↑/↓ = navega | Ctrl+Home/End = salto | Enter = seleciona | Esc = cancela
+		</p>
+		<a id="modalCloseButton" class="fa fa-close"></a>
+		<a target="_blank" href="https://github.com/Kleeedolinux/Emoto" class="fa fa-github" id="github"></a>
+	</div>
+	<div id="modalGameOver">
+		<h1 id="modalTitleGameOver">Game Over!</h1>
+		<div id="modalGameOverContent"></div>
+		<button id="dialogTryAgainButton">Tente Novamente</button>
+		<span><button id="dialogTwitterButtonGameOver">Compartilhar</button><button id="dialogHomeButtonGameOver">Home</button></span>
+	</div>
+	<div id="modalWin">
+		<h1 id="modalTitleWin"><span><img id="ClapLeft" src="./img/4x.webp"
+					alt=""></span>Você ganhou!<span><img id="ClapRight"
+					src="./img/4x.webp" alt=""></span></h1>
+		<div id="modalWinContent"></div>
+		<span><button id="dialogTwitterButtonWin">Compartilhar</button><button id="dialogHomeButtonWin">Home</button></span>
+	</div>
+</dialog>
+
+<body>
+	<div id="background-img"></div>
+	<div id="root"></div>
+	<div class="container1">
+		<h1 class="title" id="title">emoto</h1>
+		<h3 id="subtitle">um jogo sobre adivinhar emotes</h3>
+		<p id="version">v2.0.0 - Update Revival</p>
+		<img class="peepoThink" id="peepoThink" src="./img/3x.webp" />
+	</div>
+
+	<input type="text" id="channelInput" placeholder="Insira um canal da Twitch" autocomplete="off" />
+	<p id="subtitle2">sério, qualquer um.</p>
+	<div id="recorde"></div>
+	<div id="medalhas"></div>
+	<div id="invalidChannel"></div>
+	<div id="loading"></div>
+	<div id="app"></div>
+
+	<div id="emoteTryContainer">
+		<input id="emoteTry" type="text" class="autocomplete-input" placeholder="Insira o nome do emote"
+			autocomplete="off" />
+		<ul class="autocomplete-emotes" id="emotes-list"></ul>
+	</div>
+
+	<div id="score">
+		<div id="vidas">
+			<i class="fa fa-heart" id="vida1"></i>
+			<i class="fa fa-heart" id="vida2"></i>
+			<i class="fa fa-heart" id="vida3"></i>
+			<i class="fa fa-heart" id="vida4"></i>
+		</div>
+		<h3 id="tentativas"></h3>
+		<h3 id="acertos"></h3>
+	</div>
+</body>
+<footer>
+	<div class="footer-content">
+		<div id="socials-icons">
+			<a id="twitch-img" target="_blank" tabindex="-1" href="https://twitch.tv/GrifoEXE/about"><img
+					src="./img/Twitch.png" /></a>
+			<a target="_blank" tabindex="-1" href="https://www.youtube.com/@grifoexe"><img id="youtube-img"
+					src="./img/YouTube-Play.png" /></a>
+			<a target="_blank" tabindex="-1" href="https://twitter.com/GrifoEXE"><img id="twitter-img"
+					src="./img/Twitter.png"/></a>
+		</div>
+		<div class="credits-container">
+			<div id="nome-autor">por <a id="autor" tabindex="-1" target="_blank" href="https://twitch.tv/GrifoEXE/about">@GrifoEXE</a></div>
+			<div class="separator">|</div>
+			<div id="refactor-credits">Remasterized by <a id="refactor-author" tabindex="-1" target="_blank" href="https://github.com/kleeedolinux">@kleeedolinux</a></div>
+			<a href="https://github.com/kleeedolinux/Emoto/" target="_blank" class="fa fa-github" id="fork-github"></a>
+		</div>
+	</div>
+</footer>
+<script>var exports = {};</script>
+<script type="module" src="./scripts/dist/Main.js"></script>
+
+</html>

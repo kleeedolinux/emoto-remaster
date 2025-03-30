@@ -1,0 +1,24 @@
+{
+	"name": "emoto-fork",
+	"version": "1.0.0",
+	"description": "Inclui os emotes da Twitch, BTTV, 7TV e FFZ\r Usa a API tEmotes ->https://adiq.stoplight.io/docs/temotes/YXBpOjMyNjU2ODIx-t-emotes-api forked fom GrifoEXE",
+	"main": "server.js",
+	"scripts": {
+		"server": "node server.js",
+		"watch": "tsc -w",
+		"vercel-build": "tsc",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "Kleeedolinux",
+	"license": "MIT",
+	"dependencies": {
+		"@types/express": "^5.0.1",
+		"@types/node": "^18.6.1",
+		"concurrently": "^9.1.2",
+		"express": "^4.18.1",
+		"tslint": "^6.1.3",
+		"typescript": "^4.9.5",
+		"ws": "^8.3.0"
+	},
+	"types": "public/script/dist/index.d.ts"
+}
